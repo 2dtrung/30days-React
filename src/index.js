@@ -11,9 +11,41 @@ const hexaColor = () => {
   }
   return '#' + color
 }
+const HexaColor = () => {
+  const bgColor = hexaColor()
+  const style = {
+    backgroundColor: bgColor,
+    textAlign: 'center',
+    justifyContent: 'center',
+    verticalAlign: 'middle',
+    height: '5rem',
+    fontWeight: 'bold',
+    fontFamily: 'Poppins',
+    color: 'white'
+  }
+  return (
+    <div id='box' style={style}>{bgColor}</div>
+  )
+}
 
-const HexaColor = () => <div>{hexaColor()}</div>
 
+const HexaWrap = () => (
+  <div className='wrapper'>
+    <HexaColor/>
+  </div>
+)
+
+const App = () => {
+  return (
+    <div>
+      <HexaWrap/>
+      <HexaWrap/>
+      <HexaWrap/>
+      <HexaWrap/>
+      <HexaWrap/>
+    </div>
+  );
+}
 const rootElement = document.getElementById('root')
 // we render the App component using the ReactDOM package
-ReactDOM.render(<HexaColor />, rootElement)
+ReactDOM.render(<App />, rootElement)
