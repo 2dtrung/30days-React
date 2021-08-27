@@ -1,51 +1,58 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// Hexadecimal color generator
-const hexaColor = () => {
-  let str = '0123456789abcdef'
-  let color = ''
-  for (let i = 0; i < 6; i++) {
-    let index = Math.floor(Math.random() * str.length)
-    color += str[index]
-  }
-  return '#' + color
-}
-const HexaColor = () => {
-  const bgColor = hexaColor()
-  const style = {
-    backgroundColor: bgColor,
-    textAlign: 'center',
-    justifyContent: 'center',
-    verticalAlign: 'middle',
-    height: '5rem',
-    fontWeight: 'bold',
-    fontFamily: 'Poppins',
-    color: 'white'
-  }
-  return (
-    <div id='box' style={style}>{bgColor}</div>
-  )
-}
-
-
-const HexaWrap = () => (
-  <div className='wrapper'>
-    <HexaColor/>
+const Intro = () => (
+  <div>
+    <h1>SUBSCRIBE</h1>
+    <p>Sign up with your email to receive news and updates</p>
   </div>
 )
 
-const App = () => {
+const InputArea = ({data: {firstInput, secondInput, thirdInput}}) => {
+  return (
+    <div className='input-area'>
+      <Input inValue={firstInput}/>
+      <Input inValue={secondInput}/>
+      <Input inValue={thirdInput}/>
+    </div>
+  );
+
+}
+
+const Input = ({inValue}) => (
+  <input type='text' placeholder={inValue}/>
+)
+
+const Subcribe = ({value}) => {
+  return (
+    <button class='button' type='submit'>{value}</button>
+  );
+
+}
+
+
+const Main = ({titleText,}) => {
+  const data = {
+    firstInput: 'First name',
+    secondInput: 'Last name',
+    thirdInput: 'Email'
+  }
+  const btn = 'Subscribe'
   return (
     <div>
-      <HexaWrap/>
-      <HexaWrap/>
-      <HexaWrap/>
-      <HexaWrap/>
-      <HexaWrap/>
+      <Intro />
+      <InputArea data={data} />
+      <Subcribe value={btn} />
     </div>
   );
 }
+
+const App = () => (
+  <div className="container"> 
+    <Main />
+  </div>
+)
+
 const rootElement = document.getElementById('root')
 // we render the App component using the ReactDOM package
 ReactDOM.render(<App />, rootElement)
