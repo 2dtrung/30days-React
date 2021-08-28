@@ -19,41 +19,40 @@
     <title>30 Days Of React App</title>
     <style type="text/css">
         body {
-          background-color: rgb(249, 247, 247);
-        }
-        .container {
-          border-radius: 10px 10px 10px 10px;
-          text-align: center;
-          background-color: rgb(194, 230,244);
           font-family: "Poppins";
         }
 
-        h1 {
-          font-weight: 300;
+        .wrapper {
+          margin: 0 auto;
+          max-width: 716px;
         }
 
-        input {
-          border: 0;
-          margin-right: 0.5rem;
-          height: 1.5rem;
-          border-radius: 10px 10px 10px 10px;
+        .intro-part {
+          text-align: center;
         }
 
-        .input-area {
-          margin-top: 3rem;
+        .intro-part > h1{
+          font-weight: 400;
+        }
+        .intro-part > h2{
+          font-weight: 200;
         }
 
-        button {
-          margin-top: 2rem;
-          background-color: rgb(243,116,116);
-          border: 0;
-          height: 1.5rem;
-          border-radius: 5px 5px 5px 5px;
-          margin-bottom: 40px;
+        .table-number {
+          display: flex;
+          flex-wrap: wrap;
         }
 
-        .button {
-          width: 15%;
+        .number-container {
+          width: calc(700px/8);
+          height: calc(350px/4);
+          text-align: center;
+          margin-left: 2px;
+          margin-top: 2px;
+        }
+        .number-container > p {
+          margin-top: 30px;
+          font-size: x-large;
           color: white;
         }
     </style>
