@@ -1,92 +1,66 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-const tenHighestPopulation = [
-  { country: 'World', population: 7693165599 },
-  { country: 'China', population: 1377422166 },
-  { country: 'India', population: 1295210000 },
-  { country: 'USA', population: 323947000 },
-  { country: 'Indonesia', population: 258705000 },
-  { country: 'Brazil', population: 206135893 },
-  { country: 'Pakistan', population: 194125062 },
-  { country: 'Nigeria', population: 186988000 },
-  { country: 'Bangladesh', population: 161006790 },
-  { country: 'Russian', population: 146599183 },
-  { country: 'Japan', population: 126960000 },
-]
+// index.js
+import React from "react";
+import ReactDOM from "react-dom";
+import { countriesData } from "./countries.js";
 
-const Name = ({country}) => {
-  return (
-    <div className='country-name'>
-      <h4>{country.toUpperCase()}</h4>
-    </div>
-  );
-}
 
-const PopulationLength = ({value}) => {
-  const style = {
-    width: 450*(value/7693165599)
+
+class App extends React.Component {
+  state = {
+    flag : countriesData[0].flag,
+    name : countriesData[0].name,
+    capital : countriesData[0].capital,
+    languages : countriesData[0].languages,
+    population : countriesData[0].population,
+    currency : countriesData[0].currency
   }
-  return (
-    <div className='population-length'>
-      <div className='graph-length' style={style}>
+  randomCountry = () => {
+    let a = countriesData[Math.floor(Math.random() * countriesData.length)]
+
+    this.setState({flag: a.flag, name: a.name, capital: a.capital, languages: a.languages, population: a.population, currency: a.currency})
+  }
+  render() {
+    return (
+      <div className="wrapper">
+        <div className="container">
+          <div className="country-flag">
+            <img src={this.state.flag} alt="flag"></img>
+            <h4>{(this.state.name).toUpperCase()}</h4>
+          </div>
+          <div className="country-text">
+            <h4>
+              Capital:{" "}
+              <span style={{ fontWeight: "100" }}>
+                {this.state.capital}
+              </span>
+            </h4>
+            <h4>
+              Languages:{" "}
+              <span style={{ fontWeight: "100" }}>
+                {this.state.languages}
+              </span>
+            </h4>
+            <h4>
+              Population:{" "}
+              <span style={{ fontWeight: "100" }}>
+                {this.state.population}
+              </span>
+            </h4>
+            <h4>
+              Currency:{" "}
+              <span style={{ fontWeight: "100" }}>
+                {this.state.currency}
+              </span>
+            </h4>
+          </div>
+        </div>
+        <div className='select-btn'>
+          <button class='btn btn-primary' onClick={this.randomCountry}>Select Country</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-const Population = ({population}) => {
-
-  return (
-    <div className='population'>
-      <h4>{population}</h4>
-    </div>
-  );
-}
-
-
-const Country = ({countryPopulation:{country,population}}) => {
-  return (
-    <div class='country'>
-      <Name country={country}/>
-      <PopulationLength value={population}/>
-      <Population population={population}/>
-    </div>
-  );
-}
-
-const PopulationGraph = ({countries}) => { 
-  const listCountries = countries.map(countryPopulation => <Country countryPopulation={countryPopulation} />)
-  return (
-    <div className='population-graph'>
-      {listCountries}
-    </div>
-  );
-}
-
-const Intro = () => {
-  return (
-    <div className='intro-part'>
-      <h1>30 Days Of React</h1>
-      <h2>World Population</h2>
-      <p>Ten most populated countries</p>
-    </div>
-  );
-}
-
-const Wrapper = () => {
-  return (
-    <div className='wrapper'>
-      <Intro />
-      <PopulationGraph countries={tenHighestPopulation}/>
-    </div>
-  );
-}
-
-const App = () => (
-  <div>
-    <Wrapper />
-  </div>
-)
-const rootElement = document.getElementById('root')
-// we render the App component using the ReactDOM package
-ReactDOM.render(<App />, rootElement)
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
