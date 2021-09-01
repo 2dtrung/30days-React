@@ -1,66 +1,31 @@
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
-import { countriesData } from "./countries.js";
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 
-
-
-class App extends React.Component {
+class App extends Component {
   state = {
-    flag : countriesData[0].flag,
-    name : countriesData[0].name,
-    capital : countriesData[0].capital,
-    languages : countriesData[0].languages,
-    population : countriesData[0].population,
-    currency : countriesData[0].currency
+    topMargin: '',
+    leftMargin: '',
+    rightMargin: '',
   }
-  randomCountry = () => {
-    let a = countriesData[Math.floor(Math.random() * countriesData.length)]
+  // triggered whenever the mouse enter
+  handleMouseEnter = () => {
+    let top = Math.floor(Math.random() * 600) + 'px'
+    let left = Math.floor(Math.random() * 800) + 'px'
+    let right = Math.floor(Math.random() * 600) + 'px'
+    this.setState({ topMargin: top, leftMargin: left, rightMargin: right})
 
-    this.setState({flag: a.flag, name: a.name, capital: a.capital, languages: a.languages, population: a.population, currency: a.currency})
   }
   render() {
     return (
-      <div className="wrapper">
-        <div className="container">
-          <div className="country-flag">
-            <img src={this.state.flag} alt="flag"></img>
-            <h4>{(this.state.name).toUpperCase()}</h4>
-          </div>
-          <div className="country-text">
-            <h4>
-              Capital:{" "}
-              <span style={{ fontWeight: "100" }}>
-                {this.state.capital}
-              </span>
-            </h4>
-            <h4>
-              Languages:{" "}
-              <span style={{ fontWeight: "100" }}>
-                {this.state.languages}
-              </span>
-            </h4>
-            <h4>
-              Population:{" "}
-              <span style={{ fontWeight: "100" }}>
-                {this.state.population}
-              </span>
-            </h4>
-            <h4>
-              Currency:{" "}
-              <span style={{ fontWeight: "100" }}>
-                {this.state.currency}
-              </span>
-            </h4>
-          </div>
-        </div>
-        <div className='select-btn'>
-          <button class='btn btn-primary' onClick={this.randomCountry}>Select Country</button>
+      <div onMouseEnter={this.handleMouseEnter} style={{width: '1440px', height: '1270px'}}>
+        <div className='box' style={{backgroundColor: 'rgb(94,220,251)', width: '300px', textAlign: 'center', height: '60px', marginTop: this.state.topMargin, marginLeft: this.state.leftMargin, marginRight: this.state.rightMargin}}>
+            <h2 style={{paddingTop: '10px', textShadow: '1px 1px pink'}}> 30 Days Of React</h2>
         </div>
       </div>
-    );
+    )
   }
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+const rootElement = document.getElementById('root')
+// we render the JSX element using the ReactDOM package
+ReactDOM.render(<App />, rootElement)
